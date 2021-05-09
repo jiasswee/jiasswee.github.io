@@ -1,0 +1,28 @@
+/* 百度分享 */
+window._bd_share_config={"common":{"bdSnsKey":{"tsina":"1948528363","tqq":"801371529"},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"0","bdPos":"right","bdTop":"250"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+
+/* 百度统计 */
+document.writeln("<script>");
+document.writeln("var _hmt = _hmt || [];");
+document.writeln("(function() {");
+document.writeln("  var hm = document.createElement(\'script\');");
+document.writeln("  hm.src = \'https://hm.baidu.com/hm.js?23ad401ffbef8387b412c2312a8d2617\';");
+document.writeln("  var s = document.getElementsByTagName(\'script\')[0]; ");
+document.writeln("  s.parentNode.insertBefore(hm, s);");
+document.writeln("})();");
+document.writeln("</script>");
+/* Google Adsense */
+/* var adEle = document.createElement("ins");
+adEle.className = "adsbygoogle";
+adEle.style.cssText = "display:block;max-width:728px;max-height:90px";
+adEle.setAttribute("data-ad-client", "ca-pub-5928286935473149");
+adEle.setAttribute("data-ad-slot", "8733516557");
+adEle.setAttribute("data-ad-format", "auto");
+document.body.appendChild(adEle);
+
+(adsbygoogle = window.adsbygoogle || []).push({});
+
+var adScript = document.createElement("script");
+adScript.setAttribute("async", "async");
+adScript.src = "//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+document.body.appendChild(adScript);*/
