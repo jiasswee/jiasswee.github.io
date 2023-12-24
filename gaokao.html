@@ -127,7 +127,7 @@
         }
 
         function getHitokoto() {
-            $.get("https://v1.hitokoto.cn/?c=b&encode=text", function (data) {
+            $.get("https://v1.hitokoto.cn/?c=k&encode=text", function (data) {
                 document.querySelector(".hitokoto-content").innerHTML = "每日一句：" + data;
             });
         }
