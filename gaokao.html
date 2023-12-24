@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/mdui/0.4.3/css/mdui.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url("https://www.jiasswee.cloudns.biz/bing.php");
+            background-size: cover;
+        }
+
+        #countdown-container {
+            width: 80%;
+            height: 60%;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .countdown-title {
+            font-size: 38px;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        .countdown-time {
+            font-size: 70px;
+            font-weight: bold;
+            color: red;
+            margin-bottom: 20px;
+        }
+
+        .current-date {
+            font-size: 32px;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        .hitokoto-content {
+            font-size: 32px;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        #footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            color: gray;
+        }
+
+        }
+    </style>
+    <title>高考倒计时</title>
+</head>
+
+<body>
+    <div id="countdown-container">
+        <div id="countdown">
+            <h1 class="countdown-title">距离<span style="color: red;">2024年高考</span>还有</h1>
+            <div class="countdown-time">
+                <span class="days">Calculating...</span> 天
+                <span class="hours">Calculating...</span> 小时
+                <span class="minutes">Calculating...</span> 分钟
+                <span class="seconds">Calculating...</span> 秒
+            </div>
+        </div>
+        <div class="current-date">当前日期：Loading...</div>
+        <div class="hitokoto-content">每日一句：Loading...</div>
+    </div>
+
+    <footer id="footer">Powered by 20班</footer>
+
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        function countdown() {
+            var examDate = new Date("2024-06-07T09:00:00+08:00");
+            var now = new Date();
+            var distance = examDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.querySelector(".days").innerHTML = days;
+            document.querySelector(".hours").innerHTML = hours;
+            document.querySelector(".minutes").innerHTML = minutes;
+            document.querySelector(".seconds").innerHTML = seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.querySelector(".countdown-time").innerHTML = "已经开始！";
+            }
+        }
+
+        function getCurrentDate() {
+            var currentDate = new Date();
+            var year = currentDate.getFullYear();
+            var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+            var day = currentDate.getDate().toString().padStart(2, '0');
+            var hours = currentDate.getHours().toString().padStart(2, '0');
+            var minutes = currentDate.getMinutes().toString().padStart(2, '0');
+            var seconds = currentDate.getSeconds().toString().padStart(2, '0');
+
+            document.querySelector(".current-date").innerHTML = "当前日期：" + year + "年" + month + "月" + day + "日 " + hours + ":" + minutes + ":" + seconds;
+        }
+
+        function getHitokoto() {
+            $.get("https://v1.hitokoto.cn/?c=b&encode=text", function (data) {
+                document.querySelector(".hitokoto-content").innerHTML = "每日一句：" + data;
+            });
+        }
+
+        countdown();
+        getCurrentDate();
+        getHitokoto();
+
+        var x = setInterval(countdown, 1000);
+        setInterval(getCurrentDate, 1000);
+    </script>
+</body>
+
+</html>
