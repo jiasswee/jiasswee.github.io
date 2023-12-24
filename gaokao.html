@@ -60,15 +60,21 @@
             margin-bottom: 10px;
         }
 
-        #footer {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            text-align: center;
-            font-size: 14px;
+        .hitokoto-source {
+            font-size: 25px;
+            color: gray;
+        }
+        
+        .hitokoto-author {
+            font-size: 25px;
             color: gray;
         }
 
+        #footer {
+            text-align: center;
+            font-size: 25px;
+            color: gray;
+            margin-top: 20px;
         }
     </style>
     <title>高考倒计时</title>
@@ -87,6 +93,8 @@
         </div>
         <div class="current-date">当前日期：Loading...</div>
         <div class="hitokoto-content">每日一句：Loading...</div>
+        <div class="hitokoto-author"></div>
+        <div class="hitokoto-source">Loading...</div>
     </div>
 
     <footer id="footer">Powered by 20班</footer>
@@ -127,8 +135,12 @@
         }
 
         function getHitokoto() {
-            $.get("https://v1.hitokoto.cn/?c=k&c=i&encode=text", function (data) {
-                document.querySelector(".hitokoto-content").innerHTML = "每日一句：" + data;
+            $.getJSON("https://v1.hitokoto.cn/?c=k&encode=json", function (data) {
+                document.querySelector(".hitokoto-content").innerHTML = "每日一句：" + data.hitokoto;
+                if (data.from_who) {
+                    document.querySelector(".hitokoto-author").innerHTML = "作者：" + data.from_who;
+                }
+                document.querySelector(".hitokoto-source").innerHTML = "来源：" + data.from;
             });
         }
 
